@@ -1,7 +1,7 @@
 export function InsightPanel({ insights, usingMockSocialData }) {
   return (
     <section className="glass-panel rounded-3xl p-5">
-      <p className="text-xs uppercase tracking-[0.3em] text-slate-500">AI Insight / Explanation Box</p>
+      <p className="text-xs font-bold uppercase tracking-[0.3em] text-fuchsia-300/80">AI Insight / Explanation Box</p>
       <h3 className="mt-2 text-xl font-semibold text-white">{insights.headline}</h3>
       <p className="mt-3 text-sm leading-7 text-slate-300">{insights.body}</p>
 

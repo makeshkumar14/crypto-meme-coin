@@ -1,7 +1,7 @@
 export function AlertsPanel({ alerts, error }) {
   return (
     <section className="glass-panel rounded-3xl p-5">
-      <p className="text-xs uppercase tracking-[0.3em] text-slate-500">Alerts System</p>
+      <p className="text-xs font-bold uppercase tracking-[0.3em] text-cyan-300/80">Alerts System</p>
       <h3 className="mt-2 text-xl font-semibold text-white">Real-time style market alerts</h3>
 
       <div className="mt-4 space-y-3">

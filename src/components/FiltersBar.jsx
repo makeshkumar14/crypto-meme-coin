@@ -3,7 +3,7 @@ export function FiltersBar({ chains, activeChain, onChange }) {
     <section className="glass-panel rounded-3xl p-4">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="text-xs uppercase tracking-[0.3em] text-slate-500">Trending Coins Dashboard</p>
+          <p className="text-xs font-bold uppercase tracking-[0.3em] text-cyan-300/80">Trending Coins Dashboard</p>
           <h3 className="mt-1 text-xl font-semibold text-white">Filter by blockchain ecosystem</h3>
         </div>
         <div className="flex flex-wrap gap-2">

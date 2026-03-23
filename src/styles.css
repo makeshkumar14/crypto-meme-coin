@@ -13,12 +13,7 @@ html {
 }
 
 body {
-  @apply min-h-screen bg-slate-950 text-slate-100 antialiased;
-  background-image:
-    radial-gradient(circle at top left, rgba(124, 92, 255, 0.22), transparent 28%),
-    radial-gradient(circle at top right, rgba(0, 245, 212, 0.16), transparent 26%),
-    radial-gradient(circle at bottom center, rgba(255, 79, 216, 0.14), transparent 28%),
-    linear-gradient(180deg, #050816 0%, #02040a 100%);
+  @apply min-h-screen bg-black text-slate-100 antialiased;
 }
 
 #root {

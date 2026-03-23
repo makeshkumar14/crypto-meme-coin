@@ -1,4 +1,4 @@
-﻿import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAppContext } from '../context/AppContext';
 import { OpportunitiesPanel } from '../components/OpportunitiesPanel';
 import { MarketLeaderboard } from '../components/MarketLeaderboard';
@@ -34,13 +34,13 @@ export function HomePage() {
         <div className="absolute bottom-0 left-1/3 h-44 w-44 rounded-full bg-fuchsia-500/20 blur-3xl" />
         <div className="relative grid gap-8 lg:grid-cols-[1.25fr_0.95fr] lg:items-center">
           <div className="space-y-5">
-            <p className="inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-xs uppercase tracking-[0.35em] text-cyan-200">
+            <p className="inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-xs tracking-[0.35em] text-cyan-200">
               New-user friendly meme coin analytics
             </p>
-            <h1 className="max-w-3xl text-4xl font-bold leading-tight text-white sm:text-6xl">
+            <h1 className="max-w-3xl text-3xl font-bold leading-tight sm:text-5xl tracking-[0.2em] text-cyan-50">
               Follow meme coin momentum without getting lost in crypto noise.
             </h1>
-            <p className="max-w-2xl text-base leading-8 text-slate-300">
+            <p className="max-w-2xl text-sm leading-7 tracking-[0.15em] text-cyan-200/70">
               MemeSense AI turns hype, sentiment, liquidity, and suspicious activity into clean explanations. Start on the main page,
               dive into charts when you want more depth, and use the fake-hype detector before trusting a breakout.
             </p>

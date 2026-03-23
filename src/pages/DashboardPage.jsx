@@ -1,4 +1,4 @@
-﻿import { useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useAppContext } from '../context/AppContext';
 import { BLOCKCHAINS, getMarketPulse, summarizeSignals } from '../lib/analytics';
 import { OverviewStats } from '../components/OverviewStats';
@@ -31,7 +31,7 @@ export function DashboardPage() {
     <div className="space-y-6">
       <section className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="text-xs uppercase tracking-[0.3em] text-slate-500">Dashboard</p>
+          <p className="text-xs font-bold uppercase tracking-[0.3em] text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-fuchsia-400">Dashboard</p>
           <h1 className="mt-2 text-4xl font-bold text-white">Track the market in one place</h1>
           <p className="mt-2 max-w-2xl text-sm leading-7 text-slate-300">
             Clean summaries for beginners, detailed coin cards for power users, and instant warnings when hype outruns liquidity.

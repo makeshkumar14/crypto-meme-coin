@@ -1,4 +1,4 @@
-﻿import { useMemo } from 'react';
+import { useMemo } from 'react';
 import { useAppContext } from '../context/AppContext';
 
 export function DetectorPage() {

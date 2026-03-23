@@ -16,7 +16,7 @@ export function OverviewStats({ coins, marketPulse }) {
     <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
       {items.map((item) => (
         <div key={item.label} className="glass-panel rounded-3xl p-5">
-          <p className="text-xs uppercase tracking-[0.28em] text-slate-500">{item.label}</p>
+          <p className="text-xs font-bold uppercase tracking-[0.28em] text-emerald-300/80">{item.label}</p>
           <p className="mt-3 text-3xl font-bold text-white">{item.value}</p>
           <p className="mt-2 text-sm text-slate-400">{item.note}</p>
         </div>

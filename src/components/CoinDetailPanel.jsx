@@ -9,12 +9,12 @@ export function CoinDetailPanel({ coin }) {
 
   return (
     <section className="glass-panel rounded-3xl p-5">
-      <p className="text-xs uppercase tracking-[0.3em] text-slate-500">Selected Coin Deep Dive</p>
+      <p className="text-xs font-bold uppercase tracking-[0.3em] text-indigo-400/80">Selected Coin Deep Dive</p>
       <div className="mt-3 flex items-center gap-3">
         <img src={coin.image} alt={coin.name} className="h-12 w-12 rounded-full border border-white/10" />
         <div>
           <h3 className="text-xl font-semibold text-white">{coin.name}</h3>
-          <p className="text-sm text-slate-400">{coin.symbol} • {coin.socialSource}</p>
+          <p className="text-sm text-slate-400">{coin.symbol} ï¿½ {coin.socialSource}</p>
         </div>
       </div>
 
@@ -28,7 +28,7 @@ export function CoinDetailPanel({ coin }) {
       </div>
 
       <div className="mt-5 rounded-2xl border border-white/10 bg-slate-900/60 p-4">
-        <p className="text-xs uppercase tracking-[0.25em] text-slate-500">Trade Readiness</p>
+        <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-orange-400/90">Trade Readiness</p>
         <p className="mt-2 text-sm leading-6 text-slate-200">{coin.launchSignal.detail}</p>
       </div>
 
@@ -43,8 +43,8 @@ export function CoinDetailPanel({ coin }) {
 
 function Metric({ label, value, valueClass = 'text-white' }) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-3">
-      <p className="text-xs uppercase tracking-[0.22em] text-slate-500">{label}</p>
+    <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-3 transition-colors hover:bg-white/[0.05]">
+      <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-orange-400/80">{label}</p>
       <p className={`mt-2 font-medium ${valueClass}`}>{value}</p>
     </div>
   );

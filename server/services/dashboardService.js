@@ -1,4 +1,4 @@
-﻿import {
+import {
   buildInsight,
   calculateHypeScore,
   calculateLiquidityScore,
@@ -24,13 +24,13 @@ const curatedFallbackCoins = [
   { id: 'bonk', name: 'Bonk', symbol: 'BONK', image: 'https://assets.coingecko.com/coins/images/28600/large/bonk.jpg', current_price: 0.000031, market_cap: 2200000000, total_volume: 410000000, price_change_percentage_24h: 8.1 },
   { id: 'dogwifcoin', name: 'dogwifhat', symbol: 'WIF', image: 'https://assets.coingecko.com/coins/images/33566/large/dogwifhat.jpg', current_price: 2.42, market_cap: 2400000000, total_volume: 670000000, price_change_percentage_24h: 9.8 },
   { id: 'floki', name: 'Floki', symbol: 'FLOKI', image: 'https://assets.coingecko.com/coins/images/16746/large/PNG_image.png', current_price: 0.00019, market_cap: 1800000000, total_volume: 250000000, price_change_percentage_24h: -2.1 },
-  { id: 'brett', name: 'Brett', symbol: 'BRETT', image: GENERIC_IMAGE, current_price: 0.082, market_cap: 810000000, total_volume: 91000000, price_change_percentage_24h: 7.2 },
-  { id: 'mog-coin', name: 'Mog Coin', symbol: 'MOG', image: GENERIC_IMAGE, current_price: 0.0000023, market_cap: 640000000, total_volume: 85000000, price_change_percentage_24h: 5.8 },
-  { id: 'cat-in-a-dogs-world', name: 'Cat in a dogs world', symbol: 'MEW', image: GENERIC_IMAGE, current_price: 0.0062, market_cap: 540000000, total_volume: 73000000, price_change_percentage_24h: 4.7 },
-  { id: 'book-of-meme', name: 'Book of Meme', symbol: 'BOME', image: GENERIC_IMAGE, current_price: 0.0098, market_cap: 690000000, total_volume: 150000000, price_change_percentage_24h: 3.5 },
-  { id: 'ordi', name: 'ORDI', symbol: 'ORDI', image: GENERIC_IMAGE, current_price: 42.7, market_cap: 890000000, total_volume: 210000000, price_change_percentage_24h: 6.4 },
-  { id: 'sats-ordinals', name: 'SATS', symbol: 'SATS', image: GENERIC_IMAGE, current_price: 0.00000031, market_cap: 620000000, total_volume: 77000000, price_change_percentage_24h: 4.9 },
-  { id: 'dog-go-to-the-moon-rune', name: 'DOG•GO•TO•THE•MOON', symbol: 'DOG', image: GENERIC_IMAGE, current_price: 0.0059, market_cap: 410000000, total_volume: 65000000, price_change_percentage_24h: 9.6 },
+  { id: 'brett', name: 'Brett', symbol: 'BRETT', image: 'https://assets.coingecko.com/coins/images/35090/large/brett-logo.png', current_price: 0.082, market_cap: 810000000, total_volume: 91000000, price_change_percentage_24h: 7.2 },
+  { id: 'mog-coin', name: 'Mog Coin', symbol: 'MOG', image: 'https://assets.coingecko.com/coins/images/30713/large/MOG_LOGO_TRANSPARENT-01.png', current_price: 0.0000023, market_cap: 640000000, total_volume: 85000000, price_change_percentage_24h: 5.8 },
+  { id: 'cat-in-a-dogs-world', name: 'Cat in a dogs world', symbol: 'MEW', image: 'https://assets.coingecko.com/coins/images/36262/large/mew-new.png', current_price: 0.0062, market_cap: 540000000, total_volume: 73000000, price_change_percentage_24h: 4.7 },
+  { id: 'book-of-meme', name: 'Book of Meme', symbol: 'BOME', image: 'https://assets.coingecko.com/coins/images/35987/large/BOME.jpeg', current_price: 0.0098, market_cap: 690000000, total_volume: 150000000, price_change_percentage_24h: 3.5 },
+  { id: 'ordi', name: 'ORDI', symbol: 'ORDI', image: 'https://assets.coingecko.com/coins/images/30013/large/ORDI.png', current_price: 42.7, market_cap: 890000000, total_volume: 210000000, price_change_percentage_24h: 6.4 },
+  { id: 'sats-ordinals', name: 'SATS', symbol: 'SATS', image: 'https://assets.coingecko.com/coins/images/30014/large/SATS.png', current_price: 0.00000031, market_cap: 620000000, total_volume: 77000000, price_change_percentage_24h: 4.9 },
+  { id: 'dog-go-to-the-moon-rune', name: 'DOG•GO•TO•THE•MOON', symbol: 'DOG', image: 'https://assets.coingecko.com/coins/images/37397/large/DOG_logo_red_rounded.png', current_price: 0.0059, market_cap: 410000000, total_volume: 65000000, price_change_percentage_24h: 9.6 },
 ];
 
 const bitcoinSymbols = new Set(['ORDI', 'SATS', 'DOG', 'RATS', 'PUPS']);
