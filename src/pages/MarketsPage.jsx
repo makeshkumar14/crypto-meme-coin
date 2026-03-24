@@ -10,7 +10,7 @@ const PAGE_SIZE = 8;
 export function MarketsPage() {
   const { coins, loading, error, watchlist, toggleWatchlist } = useAppContext();
   const [query, setQuery] = useState('');
-  const [sortBy, setSortBy] = useState('marketCap');
+  const [sortBy, setSortBy] = useState('hype');
   const [chainFilter, setChainFilter] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
   const [expandedCoinId, setExpandedCoinId] = useState(null);
@@ -61,20 +61,7 @@ export function MarketsPage() {
             placeholder="Search token, symbol, or chain"
             className="w-72 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-white outline-none focus:border-cyan-300/40"
           />
-          <select
-            value={sortBy}
-            onChange={(event) => {
-              setSortBy(event.target.value);
-              setCurrentPage(1);
-            }}
-            className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-white outline-none"
-          >
-            <option value="marketCap">Sort by market cap</option>
-            <option value="hype">Sort by hype</option>
-            <option value="liquidity">Sort by liquidity</option>
-            <option value="fakeHype">Sort by fake hype risk</option>
-            <option value="volume">Sort by volume</option>
-          </select>
+
         </div>
       </section>
 
