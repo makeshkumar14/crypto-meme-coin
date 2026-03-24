@@ -8,13 +8,14 @@ import { AlertsPanel } from '../components/AlertsPanel';
 import { InsightPanel } from '../components/InsightPanel';
 import { CoinDetailPanel } from '../components/CoinDetailPanel';
 import { LaunchWindowCard } from '../components/LaunchWindowCard';
+import { LaunchAdvisorPanel } from '../components/LaunchAdvisorPanel';
 import { DashboardSkeleton } from '../components/DashboardSkeleton';
 import { SignalShowcase } from '../components/SignalShowcase';
 
 export function DashboardPage() {
   const [chainFilter, setChainFilter] = useState('All');
   const [selectedCoinId, setSelectedCoinId] = useState(null);
-  const { coins, loading, error, usingMockSocialData } = useAppContext();
+  const { coins, loading, error, usingFallbackSocialData, launchAdvisor } = useAppContext();
 
   const filteredCoins = useMemo(() => {
     if (chainFilter === 'All') {
@@ -52,9 +53,10 @@ export function DashboardPage() {
             </div>
             <div className="space-y-6">
               <AlertsPanel alerts={insights.alerts} error={error} />
-              <InsightPanel insights={insights} usingMockSocialData={usingMockSocialData} />
+              <InsightPanel insights={insights} usingFallbackSocialData={usingFallbackSocialData} />
+              <LaunchAdvisorPanel advisor={launchAdvisor || insights.launchAdvisor} />
               <CoinDetailPanel coin={selectedCoin} />
-              <LaunchWindowCard launchWindow={selectedCoin?.launchSignal || insights.launchWindow} />
+              <LaunchWindowCard launchWindow={insights.launchWindow} />
             </div>
           </section>
         </>

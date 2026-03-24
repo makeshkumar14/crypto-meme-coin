@@ -12,15 +12,7 @@ export function Header({ brand, lastUpdated, onRefresh, usingMockSocialData }) {
         <span className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-2 text-cyan-200">
           Live data refresh: {formatRelativeTime(lastUpdated)}
         </span>
-        <span
-          className={`rounded-full px-3 py-2 ${
-            usingMockSocialData
-              ? 'border border-amber-400/20 bg-amber-400/10 text-amber-200'
-              : 'border border-emerald-400/20 bg-emerald-400/10 text-emerald-200'
-          }`}
-        >
-          {usingMockSocialData ? 'Fallback social blend active' : 'LunarCrush live social data active'}
-        </span>
+
         <button
           onClick={onRefresh}
           className="rounded-full border border-fuchsia-400/30 bg-fuchsia-500/10 px-4 py-2 font-medium text-fuchsia-100 transition hover:bg-fuchsia-500/20"

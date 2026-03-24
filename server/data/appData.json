@@ -1,0 +1,68 @@
+{
+  "users": [
+    {
+      "id": "24b675f2-8486-4428-b54b-319cbf05a1a3",
+      "name": "makesh",
+      "email": "makesh@meme.com",
+      "initials": "MA",
+      "passwordHash": "7c01283be78f28e62e0129024d4691f9a954d837e70543c27b4b385a3f1aa9124a337a3f16773cace60850b307ff6b69b8c671cee021444a791627a271a74500",
+      "passwordSalt": "87e78b5e8b2d5585df582fd9c66f18e8",
+      "createdAt": "2026-03-23T21:25:52.313Z",
+      "watchlist": [
+        "pepe",
+        "bonk"
+      ],
+      "alertPreferences": {
+        "newTrends": true,
+        "fakeHype": true,
+        "dumps": true,
+        "launchWindows": true
+      },
+      "reminderSettings": {
+        "enabled": true,
+        "emailDigest": true,
+        "riskAlerts": true,
+        "wishlistAlerts": true
+      },
+      "theme": "dark"
+    },
+    {
+      "id": "6fbe14a1-b093-43f9-a34c-24664da24a12",
+      "name": "kumar",
+      "email": "makesh.pyo@gmail.com",
+      "initials": "KU",
+      "passwordHash": "dcf720880d233816f69c3fc601593ee2929f500f0854c49501966d66d5b043f1fc829102a9d1c70fe0baa4ae70a940c71e9bf31ed94c2d476f5eaa2fd6f45f82",
+      "passwordSalt": "c6ac6ecfedd077b5c90ef079c653e967",
+      "createdAt": "2026-03-24T01:10:51.985Z",
+      "watchlist": [],
+      "alertPreferences": {
+        "newTrends": true,
+        "fakeHype": true,
+        "dumps": true,
+        "launchWindows": true
+      },
+      "reminderSettings": {
+        "enabled": true,
+        "emailDigest": true,
+        "riskAlerts": true,
+        "wishlistAlerts": true
+      },
+      "theme": "dark"
+    }
+  ],
+  "sessions": [
+    {
+      "token": "4a1f3dd07260a8555d2f7df1782f1b7e407de67b819935542945062c0e2e31fb",
+      "userId": "6fbe14a1-b093-43f9-a34c-24664da24a12",
+      "createdAt": "2026-03-24T01:10:51.985Z",
+      "expiresAt": "2026-04-23T01:10:51.985Z"
+    }
+  ],
+  "notificationState": {
+    "6fbe14a1-b093-43f9-a34c-24664da24a12": {
+      "lastReminderEmailAt": "2026-03-24T01:32:31.186Z",
+      "lastReminderSignature": "shiba-inu-dump:85|open:bittensor",
+      "lastReminderEmailId": "24f572e1-8ebd-4f70-9568-623fc043083d"
+    }
+  }
+}

@@ -1,6 +1,8 @@
-﻿import { useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
 import { useAppContext } from '../context/AppContext';
 import { formatCurrency, formatPercent } from '../lib/formatters';
+import { CoinMetricsChart } from '../components/CoinMetricsChart';
 
 const CHAINS = ['All', 'Ethereum', 'Solana', 'Bitcoin'];
 const PAGE_SIZE = 8;
@@ -11,6 +13,7 @@ export function MarketsPage() {
   const [sortBy, setSortBy] = useState('marketCap');
   const [chainFilter, setChainFilter] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
+  const [expandedCoinId, setExpandedCoinId] = useState(null);
 
   const filteredCoins = useMemo(() => {
     const normalized = query.toLowerCase().trim();
@@ -32,6 +35,10 @@ export function MarketsPage() {
   const totalPages = Math.max(1, Math.ceil(filteredCoins.length / PAGE_SIZE));
   const currentPageSafe = Math.min(currentPage, totalPages);
   const paginatedCoins = filteredCoins.slice((currentPageSafe - 1) * PAGE_SIZE, currentPageSafe * PAGE_SIZE);
+
+  function handleToggleExpand(coinId) {
+    setExpandedCoinId((prev) => (prev === coinId ? null : coinId));
+  }
 
   return (
     <div className="space-y-6">
@@ -95,7 +102,7 @@ export function MarketsPage() {
       </section>
 
       <section className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03]">
-        <div className="hidden grid-cols-[0.5fr_1.6fr_repeat(6,1fr)_0.8fr] gap-3 border-b border-white/10 bg-white/[0.04] px-5 py-4 text-xs uppercase tracking-[0.25em] text-slate-500 xl:grid">
+        <div className="hidden grid-cols-[0.5fr_1.6fr_repeat(6,1fr)_0.8fr_0.6fr] gap-3 border-b border-white/10 bg-white/[0.04] px-5 py-4 text-xs uppercase tracking-[0.25em] text-slate-500 xl:grid">
           <span>#</span>
           <span>Name</span>
           <span>Price</span>
@@ -105,31 +112,51 @@ export function MarketsPage() {
           <span>Liquidity</span>
           <span>Fake Hype</span>
           <span>Save</span>
+          <span>View</span>
         </div>
 
         <div className="divide-y divide-white/10">
           {(loading ? [] : paginatedCoins).map((coin, index) => (
-            <div key={coin.id} className="grid gap-3 px-5 py-4 xl:grid-cols-[0.5fr_1.6fr_repeat(6,1fr)_0.8fr] xl:items-center">
-              <span className="text-sm text-slate-500">{(currentPageSafe - 1) * PAGE_SIZE + index + 1}</span>
-              <div className="flex items-center gap-3">
-                <img src={coin.image} alt={coin.name} className="h-10 w-10 rounded-full border border-white/10" />
-                <div>
-                  <p className="font-semibold text-white">{coin.name}</p>
-                  <p className="text-sm text-slate-400">{coin.symbol} • {coin.chain}</p>
+            <div key={coin.id}>
+              <div className="grid gap-3 px-5 py-4 xl:grid-cols-[0.5fr_1.6fr_repeat(6,1fr)_0.8fr_0.6fr] xl:items-center">
+                <span className="text-sm text-slate-500">{(currentPageSafe - 1) * PAGE_SIZE + index + 1}</span>
+                <div className="flex items-center gap-3">
+                  <img src={coin.image} alt={coin.name} className="h-10 w-10 rounded-full border border-white/10" />
+                  <div>
+                    <p className="font-semibold text-white">{coin.name}</p>
+                    <p className="text-sm text-slate-400">{coin.symbol} • {coin.chain}</p>
+                  </div>
                 </div>
+                <span className="text-sm text-white">{formatCurrency(coin.price)}</span>
+                <span className={`text-sm ${coin.priceChange24h >= 0 ? 'text-emerald-300' : 'text-rose-300'}`}>{formatPercent(coin.priceChange24h)}</span>
+                <span className="text-sm text-white">{formatCurrency(coin.marketCap)}</span>
+                <span className="text-sm text-white">{coin.hypeScore}/100</span>
+                <span className="text-sm text-white">{coin.liquidityScore}/100</span>
+                <span className="text-sm text-white">{coin.fakeHypeScore}/100</span>
+                <button
+                  onClick={() => toggleWatchlist(coin.id)}
+                  className={`rounded-full px-3 py-2 text-sm ${watchlist.includes(coin.id) ? 'bg-cyan-400 text-slate-950' : 'border border-white/10 text-slate-300'}`}
+                >
+                  {watchlist.includes(coin.id) ? 'Saved' : 'Save'}
+                </button>
+                <button
+                  onClick={() => handleToggleExpand(coin.id)}
+                  className={`flex h-9 w-9 items-center justify-center rounded-full border transition ${
+                    expandedCoinId === coin.id
+                      ? 'border-cyan-400/40 bg-cyan-400/15 text-cyan-300'
+                      : 'border-white/10 bg-white/[0.03] text-slate-400 hover:border-cyan-300/30 hover:text-cyan-200'
+                  }`}
+                  title={expandedCoinId === coin.id ? 'Hide chart' : 'View chart'}
+                >
+                  {expandedCoinId === coin.id ? <EyeOff size={16} /> : <Eye size={16} />}
+                </button>
               </div>
-              <span className="text-sm text-white">{formatCurrency(coin.price)}</span>
-              <span className={`text-sm ${coin.priceChange24h >= 0 ? 'text-emerald-300' : 'text-rose-300'}`}>{formatPercent(coin.priceChange24h)}</span>
-              <span className="text-sm text-white">{formatCurrency(coin.marketCap)}</span>
-              <span className="text-sm text-white">{coin.hypeScore}/100</span>
-              <span className="text-sm text-white">{coin.liquidityScore}/100</span>
-              <span className="text-sm text-white">{coin.fakeHypeScore}/100</span>
-              <button
-                onClick={() => toggleWatchlist(coin.id)}
-                className={`rounded-full px-3 py-2 text-sm ${watchlist.includes(coin.id) ? 'bg-cyan-400 text-slate-950' : 'border border-white/10 text-slate-300'}`}
-              >
-                {watchlist.includes(coin.id) ? 'Saved' : 'Save'}
-              </button>
+
+              {expandedCoinId === coin.id && (
+                <div className="border-t border-white/[0.06] bg-white/[0.01] px-5 py-5 animate-in fade-in slide-in-from-top-2 duration-300">
+                  <CoinMetricsChart coin={coin} />
+                </div>
+              )}
             </div>
           ))}
 

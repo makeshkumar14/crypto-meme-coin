@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
+import { ChatAssistant } from './components/ChatAssistant';
 import { CodexPromptDock } from './components/CodexPromptDock';
 import { AppProvider } from './context/AppContext';
 import { storeCodexPrompt } from './lib/codexPromptBridge';
@@ -81,6 +82,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <AppProvider>
         <App />
+        <ChatAssistant />
         <CodexPromptDock />
       </AppProvider>
     </BrowserRouter>

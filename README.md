@@ -8,6 +8,8 @@ A multi-page meme coin intelligence platform with:
 - React + Vite + Tailwind frontend
 - Node/Express backend proxy with caching
 - CoinGecko, DexScreener, LunarCrush, Reddit fallback, and mock safety nets
+- Optional Gemini-backed chat answers with a local fallback knowledge layer
+- Optional scheduled email reminders through Resend
 
 ## Why the site looked broken before
 
@@ -34,6 +36,14 @@ PORT=8787
 CACHE_TTL_MS=180000
 LUNARCRUSH_API_KEY=your_real_lunarcrush_key
 LUNARCRUSH_BASE_URL=https://lunarcrush.com/api4/public
+GEMINI_API_KEY=your_real_gemini_key
+GEMINI_MODEL=gemini-2.5-flash
+RESEND_API_KEY=your_real_resend_key
+RESEND_FROM_EMAIL=alerts@yourdomain.com
+APP_BASE_URL=http://localhost:5173
+NOTIFICATION_POLL_MS=300000
+REMINDER_EMAIL_COOLDOWN_MS=21600000
+REMINDER_EMAIL_MAX_ITEMS=4
 ```
 
 ## Development
@@ -72,6 +82,8 @@ npm.cmd start
 
 ## Notes
 
-- Sign in / sign up is currently a local prototype flow, not full database auth.
+- Sign in / sign up is now stored in a local file-backed backend, not a production database.
 - Fake hype / bot detection is heuristic, not guaranteed bot attribution.
 - The backend now degrades more gracefully if one external provider fails.
+- The chatbot works without Gemini, but if `GEMINI_API_KEY` is present it upgrades to API-backed answers while keeping the key on the server only.
+- Scheduled reminder emails activate only when `RESEND_API_KEY` and `RESEND_FROM_EMAIL` are configured.

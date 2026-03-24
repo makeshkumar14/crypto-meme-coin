@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../context/AppContext';
 
@@ -6,17 +6,28 @@ export function AuthPage({ mode }) {
   const navigate = useNavigate();
   const { signIn, signUp } = useAppContext();
   const [form, setForm] = useState({ name: '', email: '', password: '' });
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState('');
 
   const isSignUp = mode === 'signup';
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    if (isSignUp) {
-      signUp(form);
-    } else {
-      signIn(form);
+    setSubmitting(true);
+    setError('');
+
+    try {
+      if (isSignUp) {
+        await signUp(form);
+      } else {
+        await signIn(form);
+      }
+      navigate('/dashboard');
+    } catch (submitError) {
+      setError(submitError.message || 'Unable to continue right now.');
+    } finally {
+      setSubmitting(false);
     }
-    navigate('/dashboard');
   }
 
   return (
@@ -25,8 +36,14 @@ export function AuthPage({ mode }) {
         <p className="text-xs uppercase tracking-[0.3em] text-slate-500">{isSignUp ? 'Create account' : 'Welcome back'}</p>
         <h1 className="mt-2 text-4xl font-bold text-white">{isSignUp ? 'Sign up for MemeSense AI' : 'Sign in to your account'}</h1>
         <p className="mt-3 text-sm leading-7 text-slate-300">
-          This is a simple local auth flow for the prototype. It helps complete the website UX without requiring a full auth backend yet.
+          Your account now saves watchlists, reminder settings, and theme choice on the backend so your dashboard follows you across sessions.
         </p>
+
+        {error ? (
+          <div className="mt-5 rounded-2xl border border-rose-400/20 bg-rose-400/10 px-4 py-3 text-sm text-rose-100">
+            {error}
+          </div>
+        ) : null}
 
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
           {isSignUp ? (
@@ -34,8 +51,12 @@ export function AuthPage({ mode }) {
           ) : null}
           <Field label="Email" type="email" value={form.email} onChange={(value) => setForm((current) => ({ ...current, email: value }))} />
           <Field label="Password" type="password" value={form.password} onChange={(value) => setForm((current) => ({ ...current, password: value }))} />
-          <button type="submit" className="w-full rounded-2xl bg-cyan-400 px-4 py-3 font-medium text-slate-950 transition hover:bg-cyan-300">
-            {isSignUp ? 'Create account' : 'Sign in'}
+          <button
+            disabled={submitting}
+            type="submit"
+            className="w-full rounded-2xl bg-cyan-400 px-4 py-3 font-medium text-slate-950 transition hover:bg-cyan-300 disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            {submitting ? 'Please wait...' : isSignUp ? 'Create account' : 'Sign in'}
           </button>
         </form>
       </div>

@@ -1,19 +1,33 @@
-﻿import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAppContext } from '../context/AppContext';
 import { formatCurrency } from '../lib/formatters';
 
 export function WatchlistPage() {
-  const { watchlistCoins, watchlist, toggleWatchlist } = useAppContext();
+  const { watchlistCoins, watchlist, toggleWatchlist, reminders, user } = useAppContext();
 
   return (
     <div className="space-y-6">
       <section>
         <p className="text-xs uppercase tracking-[0.3em] text-slate-500">Watchlist</p>
-        <h1 className="mt-2 text-4xl font-bold text-white">Your saved tokens</h1>
+        <h1 className="mt-2 text-4xl font-bold text-white">Your saved meme coins</h1>
         <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-300">
-          Save coins you want to revisit. This is the first step toward a more CoinMarketCap-style workflow with favorites and custom monitoring.
+          Save coins you want to revisit. Signed-in users also get backend-generated reminders when those coins start pumping, looking suspicious, or entering a cleaner launch window.
         </p>
       </section>
+
+      {user && reminders.length ? (
+        <section className="glass-panel rounded-3xl p-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-slate-500">Latest Watchlist Reminders</p>
+          <div className="mt-4 grid gap-3 md:grid-cols-2">
+            {reminders.slice(0, 4).map((reminder) => (
+              <div key={reminder.id} className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+                <p className="font-medium text-white">{reminder.title}</p>
+                <p className="mt-2 text-sm leading-7 text-slate-300">{reminder.message}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       {!watchlist.length ? (
         <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-10 text-center">
@@ -41,6 +55,10 @@ export function WatchlistPage() {
                 <Metric title="Prediction" value={`${coin.prediction.icon} ${coin.prediction.label}`} />
                 <Metric title="Hype" value={`${coin.hypeScore}/100`} />
                 <Metric title="Fake Hype" value={`${coin.fakeHypeScore}/100`} />
+              </div>
+              <div className="mt-4 rounded-2xl border border-white/10 bg-slate-900/60 p-4">
+                <p className="text-xs uppercase tracking-[0.22em] text-slate-500">Launch Readiness</p>
+                <p className="mt-2 text-sm leading-7 text-slate-200">{coin.launchSignal.detail}</p>
               </div>
             </article>
           ))}

@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
@@ -25,6 +26,7 @@ export default {
         pulseGlow: 'pulseGlow 3s ease-in-out infinite',
         slideUp: 'slideUp 0.7s ease-out both',
         'radar-spin': 'radar-spin 12s linear infinite',
+        'corner-bounce': 'corner-bounce 2.6s ease-in-out infinite',
       },
       keyframes: {
         float: {
@@ -42,6 +44,13 @@ export default {
         'radar-spin': {
           from: { transform: 'translate(-50%, -50%) rotate(0deg)' },
           to: { transform: 'translate(-50%, -50%) rotate(360deg)' },
+        },
+        'corner-bounce': {
+          '0%, 100%': { transform: 'translateY(0) scale(1)' },
+          '20%': { transform: 'translateY(-10px) scale(1.01)' },
+          '40%': { transform: 'translateY(0) scale(1)' },
+          '60%': { transform: 'translateY(-16px) scale(1.03)' },
+          '80%': { transform: 'translateY(0) scale(1)' },
         },
       },
     },

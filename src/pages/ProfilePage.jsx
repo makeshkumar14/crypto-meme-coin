@@ -1,14 +1,14 @@
-﻿import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAppContext } from '../context/AppContext';
 
 export function ProfilePage() {
-  const { user, watchlist, coins } = useAppContext();
+  const { user, watchlist, coins, reminders, theme, reminderSettings } = useAppContext();
 
   if (!user) {
     return (
       <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-10 text-center">
         <h1 className="text-4xl font-bold text-white">Create your profile</h1>
-        <p className="mt-4 text-sm leading-7 text-slate-300">Sign in or sign up to personalize your watchlist and make the dashboard feel like your own workspace.</p>
+        <p className="mt-4 text-sm leading-7 text-slate-300">Sign in or sign up to sync your watchlist, reminder settings, and theme across sessions.</p>
         <div className="mt-6 flex justify-center gap-3">
           <Link to="/signin" className="rounded-full border border-white/10 bg-white/[0.03] px-5 py-3 text-white">Sign in</Link>
           <Link to="/signup" className="rounded-full bg-cyan-400 px-5 py-3 font-medium text-slate-950">Sign up</Link>
@@ -27,6 +27,9 @@ export function ProfilePage() {
           <div>
             <h1 className="text-4xl font-bold text-white">{user.name}</h1>
             <p className="mt-2 text-sm text-slate-400">{user.email}</p>
+            <p className="mt-4 text-sm leading-7 text-slate-300">
+              Your account is now backed by the server, so saved coins and reminder preferences can be restored each time you return.
+            </p>
           </div>
           <div className="flex h-20 w-20 items-center justify-center rounded-full border border-cyan-400/30 bg-cyan-400/10 text-2xl font-bold text-cyan-200">
             {user.initials}
@@ -34,10 +37,32 @@ export function ProfilePage() {
         </div>
       </section>
 
-      <section className="grid gap-4 md:grid-cols-3">
-        <Metric title="Saved tokens" value={watchlist.length} note="Coins in your watchlist" />
+      <section className="grid gap-4 md:grid-cols-4">
+        <Metric title="Saved tokens" value={watchlist.length} note="Coins in your synced watchlist" />
         <Metric title="High fake-hype risk" value={highRiskSaved} note="Saved tokens with suspicious activity" />
-        <Metric title="Live token universe" value={coins.length} note="Tracked tokens currently available" />
+        <Metric title="Active reminders" value={reminders.length} note="Current reminders generated from your settings" />
+        <Metric title="Theme" value={theme === 'dark' ? 'Dark' : 'Light'} note="Stored as part of your user preferences" />
+      </section>
+
+      <section className="glass-panel rounded-3xl p-6">
+        <p className="text-xs uppercase tracking-[0.25em] text-slate-500">Reminder Engine</p>
+        <div className="mt-4 grid gap-3 md:grid-cols-3">
+          <Metric
+            title="Realtime reminders"
+            value={reminderSettings.enabled ? 'Enabled' : 'Paused'}
+            note="Master switch for your backend reminder feed"
+          />
+          <Metric
+            title="Watchlist focus"
+            value={reminderSettings.wishlistAlerts ? 'Focused' : 'Broad'}
+            note="Whether reminders stay centered on saved meme coins"
+          />
+          <Metric
+            title="Risk mode"
+            value={reminderSettings.riskAlerts ? 'Warnings on' : 'Warnings off'}
+            note="High fake-hype and dump warnings from the backend"
+          />
+        </div>
       </section>
     </div>
   );
